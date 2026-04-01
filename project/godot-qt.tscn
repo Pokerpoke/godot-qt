@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bmm18tpaxpjuh"]
+
+[node name="Node3D" type="Node3D" unique_id=1779463132]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=397732277]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1548230463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0000777)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1386664250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1397198)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=212826045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5404811, -1.4856699, 6.776209)
