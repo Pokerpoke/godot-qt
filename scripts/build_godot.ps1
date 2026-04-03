@@ -80,7 +80,7 @@ Get-ChildItem -Path $sourceDir -Filter "*.exe" | ForEach-Object {
 }
 
 Set-Location $targetDir
-./godot.windows.editor.x86_64.exe --dump-extension-api
+Start-Process -FilePath ./godot.windows.editor.x86_64.exe --dump-extension-api -Wait
 
 $extensionApiPath = Join-Path $targetDir "extension_api.json"
 $extensionApiTargetPath = Join-Path $godotCppPath "gdextension"

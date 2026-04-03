@@ -1,14 +1,35 @@
 [gd_scene format=3 uid="uid://bmm18tpaxpjuh"]
 
+[ext_resource type="Script" uid="uid://d3eitkgf18tvh" path="res://scripts/box.gd" id="1_2gkps"]
+[ext_resource type="PlaneMesh" uid="uid://dirjygtdungjn" path="res://resources/new_plane_mesh.tres" id="1_ep3wo"]
+[ext_resource type="Script" uid="uid://enirm5xe63aj" path="res://scripts/sub_viewport.gd" id="1_uoigg"]
+
 [node name="Node3D" type="Node3D" unique_id=1779463132]
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=397732277]
+size = Vector2i(800, 600)
+render_target_update_mode = 4
+script = ExtResource("1_uoigg")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1548230463]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.0000777)
+transform = Transform3D(1, 0, 0, 0, 0.6990263, 0.715096, 0, -0.715096, 0.6990263, 0, 6, 10)
+current = true
+fov = 70.6
+near = 0.04
+metadata/_edit_lock_ = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1386664250]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1397198)
+[node name="Box" type="CSGBox3D" parent="." unique_id=1386664250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69063854, 0.69488144, 1.1397198)
+script = ExtResource("1_2gkps")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=212826045]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5404811, -1.4856699, 6.776209)
+transform = Transform3D(1, 0, 0, 0, 0.8292599, 0.55886316, 0, -0.55886316, 0.8292599, 1.9026704, 6.3802166, 13.112326)
+fov = 102.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1369944871]
+mesh = ExtResource("1_ep3wo")
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=496989216]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+metadata/_edit_lock_ = true
