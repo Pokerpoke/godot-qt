@@ -23,6 +23,8 @@ public:
 
     ~GodotVKItem()
     {
+        delete qvk_instance;
+        qvk_instance = nullptr;
     }
 
 protected:
@@ -31,12 +33,16 @@ protected:
         QSGSimpleTextureNode *node = nullptr;
         if (oldNode == nullptr)
         {
-            oldNode = new QSGSimpleTextureNode;
-            return oldNode;
+            node    = new QSGSimpleTextureNode;
+            oldNode = node;
         }
         else
         {
-            node         = static_cast<QSGSimpleTextureNode *>(oldNode);
+            node = static_cast<QSGSimpleTextureNode *>(oldNode);
+        }
+
+        if (window() && m_vk_image != VK_NULL_HANDLE)
+        {
             auto texture = QNativeInterface::QSGVulkanTexture::fromNative(
                 m_vk_image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, window(), QSize(800, 600));
 

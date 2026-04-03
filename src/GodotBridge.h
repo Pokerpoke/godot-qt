@@ -56,13 +56,17 @@ static GDExtensionBool init_callback(GDExtensionInterfaceGetProcAddress p_get_pr
 class LibGodot
 {
 public:
-    LibGodot()
-    {
-    }
-
     LibGodot(std::string program_name, std::string project_path)
     {
-        initialize({program_name, "--path", project_path});
+        initialize({
+            program_name,
+            "--path",
+            project_path,
+            "--resolution",
+            "1x1",
+            "--position",
+            "0,0",
+        });
     }
 
     static LibGodot *instance()
@@ -73,7 +77,6 @@ public:
 
     void initialize(const std::vector<std::string> &args_vec)
     {
-
         // Convert to char* array
         std::vector<char *> args;
         for (const auto &arg : args_vec)
@@ -87,6 +90,24 @@ public:
         m_godot_instance->start();
 
         m_main_loop = godot::Engine::get_singleton()->get_main_loop();
+        get_root()->set_size(godot::Vector2i(1, 1));
+        get_root()->set_min_size(godot::Vector2i(1, 1));
+        get_root()->set_max_size(godot::Vector2i(1, 1));
+        get_root()->set_visible(false);
+        get_root()->set_flag(godot::Window::FLAG_NO_FOCUS, true);
+
+#ifdef WIN32
+        {
+            auto ds     = godot::DisplayServer::get_singleton();
+            auto handle = ds->window_get_native_handle(godot::DisplayServer::WINDOW_HANDLE,
+                                                       godot::DisplayServer::MAIN_WINDOW_ID);
+            HWND hwnd   = (HWND)handle;
+            LONG style  = GetWindowLongPtr(hwnd, GWL_EXSTYLE);
+            style |= WS_EX_TOOLWINDOW;
+            style &= ~WS_EX_APPWINDOW;
+            SetWindowLongPtr(hwnd, GWL_EXSTYLE, style);
+        }
+#endif
     }
 
     ~LibGodot()

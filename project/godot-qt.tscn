@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" uid="uid://d3eitkgf18tvh" path="res://scripts/box.gd" id="1_2gkps"]
 [ext_resource type="PlaneMesh" uid="uid://dirjygtdungjn" path="res://resources/new_plane_mesh.tres" id="1_ep3wo"]
+[ext_resource type="Script" uid="uid://cb5xtlg057v5o" path="res://scripts/godot_qt.gd" id="1_k2m0h"]
 [ext_resource type="Script" uid="uid://enirm5xe63aj" path="res://scripts/sub_viewport.gd" id="1_uoigg"]
 
 [node name="Node3D" type="Node3D" unique_id=1779463132]
+script = ExtResource("1_k2m0h")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=397732277]
+msaa_3d = 1
 size = Vector2i(800, 600)
 render_target_update_mode = 4
 script = ExtResource("1_uoigg")
